@@ -2,8 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
-import { AppComponent } from './app.component';
+//canActive luis
+import { AuthService } from './authservice'
 
+//import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <== add the imports!
+//IO
+//import { ReactiveFormsModule } from '@angular/forms';
+
+import { AppComponent } from './app.component';
 // Import containers
 import {
   FullLayoutComponent,
@@ -65,13 +71,19 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
+
+import { FormsModule }   from '@angular/forms';//lio
+
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    //,ReactiveFormsModule   //aa 
+   // ReactiveFormsModule
+   FormsModule//lio
   ],
   declarations: [
     AppComponent,
@@ -82,7 +94,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }],
+  },AuthService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -6,11 +6,12 @@ import {
   FullLayoutComponent,
   SimpleLayoutComponent
 } from './containers';
+import { AuthService } from './authservice';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'pages',
     pathMatch: 'full',
   },
   {
@@ -22,7 +23,23 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard',
+        canActivate:[AuthService],
         loadChildren: './views/dashboard/dashboard.module#DashboardModule'
+      }
+    ]
+  },
+  {
+    path: 'pages',
+    component: SimpleLayoutComponent,
+    data: {
+      title: 'Pages'
+    },
+    children: [
+      {
+        path: '',
+        //canActivateChild:[AuthService],
+        //canLoad:[AuthService],
+        loadChildren: './views/pages/pages.module#PagesModule',
       }
     ]
   }
